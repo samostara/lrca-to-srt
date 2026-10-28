@@ -9,6 +9,7 @@ args = parser.parse_args() # either manually input the VPR filename here or pass
 
 lrca_path = Path(args.file)
 srt_path = lrca_path.with_suffix(".srt")
+srt_num = 1
 
 time.sleep(0.5)
 print(f"Loaded {lrca_path}.")
@@ -86,7 +87,8 @@ for x in range(1000):
                 if int(end_mili / 100) == 0:
                     str_end_ms = str(0) + str_end_ms
                 
-                srt = srt + "00:" + str_start_min + ":" + str_start_sec + "," + str_start_ms + " --> 00:" + str_end_min + ":" + str_end_sec + "," + str_end_ms + "\n" + text_string + "\n\n"
+                srt = srt + str(srt_num) + "\n00:" + str_start_min + ":" + str_start_sec + "," + str_start_ms + " --> 00:" + str_end_min + ":" + str_end_sec + "," + str_end_ms + "\n" + text_string + "\n\n"
+                srt_num = srt_num + 1
             except Exception as e:
                 pass
     except Exception as e:
